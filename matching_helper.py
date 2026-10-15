@@ -39,6 +39,10 @@ def score_pair(pair, dancers, shared_style_count):
 
     # level match
     level_difference = Dancer.LEVEL_VALUES[dancer_i["styles"][pair["style"]]["level"]] - Dancer.LEVEL_VALUES[dancer_j["styles"][pair["style"]]["level"]]
+    
+    if level_difference > 1:
+        return score
+    
     score += (Dancer.MAX_LEVEL_DIFFERENCE - abs(level_difference)) * ATTR_BASE_SCORES["level"]
     # TODO: make level_difference bonus change exponentially
 
