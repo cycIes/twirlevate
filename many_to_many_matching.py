@@ -1,22 +1,24 @@
 # Create fake dancers with random characteristics
 
-from random_dancers import generate_dancers
+from random_dancers import generate_dancers, record_dancers
 from dancer import Dancer
 from ortools.sat.python import cp_model
-from matching_helper import create_possible_pairs, score_pair
+from matching_helper import pair_dancers_to_many, score_pair
 
 # Generate random dancers to match
 
 dancers = generate_dancers(16, seed=40)
-for dancer in dancers:
-		print(dancer)
+# for dancer in dancers:
+# 	print(dancer)
+ 
+record_dancers(dancers, "dancers_list")
 
 # Find all possible pairings of dancers
 
-possible_pairs, shared_style_count = create_possible_pairs(dancers)
+possible_pairs, shared_style_count = pair_dancers_to_many(dancers)
 
 for pair in possible_pairs:
-	print(pair)
+    print(pair)
 
 print("\n")
 print("Number of shared styles per pair (with role compatability)")

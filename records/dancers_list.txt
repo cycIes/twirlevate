@@ -1,0 +1,112 @@
+id: 1
+name: Dancer_1
+styles: {'Smooth': {'role': 'Leader', 'lvl': 'Champ'}, 'Latin': {'role': 'Follower', 'lvl': 'Silver'}, 'Standard': {'role': 'Switch', 'lvl': 'Gold'}, 'Rhythm': {'role': 'Leader', 'lvl': 'Novice'}}
+height_in: 69.9
+wants: [4, 2]
+excludes: []
+
+id: 2
+name: Dancer_2
+styles: {'Smooth': {'role': 'Follower', 'lvl': 'Silver'}, 'Latin': {'role': 'Leader', 'lvl': 'Champ'}, 'Standard': {'role': 'Switch', 'lvl': 'Pre-Champ'}, 'Rhythm': {'role': 'Switch', 'lvl': 'Newcomer'}}
+height_in: 73.5
+wants: [16]
+excludes: []
+
+id: 3
+name: Dancer_3
+styles: {'Rhythm': {'role': 'Follower', 'lvl': 'Bronze'}, 'Smooth': {'role': 'Switch', 'lvl': 'Silver'}, 'Latin': {'role': 'Switch', 'lvl': 'Champ'}}
+height_in: 74.3
+wants: [9]
+excludes: []
+
+id: 4
+name: Dancer_4
+styles: {'Latin': {'role': 'Switch', 'lvl': 'Newcomer'}, 'Standard': {'role': 'Leader', 'lvl': 'Novice'}}
+height_in: 61.4
+wants: []
+excludes: []
+
+id: 5
+name: Dancer_5
+styles: {'Smooth': {'role': 'Follower', 'lvl': 'Gold'}, 'Latin': {'role': 'Leader', 'lvl': 'Gold'}, 'Rhythm': {'role': 'Switch', 'lvl': 'Champ'}}
+height_in: 73.5
+wants: [11]
+excludes: [6]
+
+id: 6
+name: Dancer_6
+styles: {'Smooth': {'role': 'Leader', 'lvl': 'Novice'}, 'Latin': {'role': 'Follower', 'lvl': 'Bronze'}}
+height_in: 69.4
+wants: [9, 2]
+excludes: [5]
+
+id: 7
+name: Dancer_7
+styles: {'Latin': {'role': 'Follower', 'lvl': 'Champ'}, 'Rhythm': {'role': 'Switch', 'lvl': 'Bronze'}, 'Smooth': {'role': 'Leader', 'lvl': 'Bronze'}, 'Standard': {'role': 'Follower', 'lvl': 'Silver'}}
+height_in: 72.4
+wants: [2, 3]
+excludes: [5]
+
+id: 8
+name: Dancer_8
+styles: {'Standard': {'role': 'Leader', 'lvl': 'Newcomer'}}
+height_in: 66.9
+wants: [4, 16]
+excludes: [13]
+
+id: 9
+name: Dancer_9
+styles: {'Rhythm': {'role': 'Switch', 'lvl': 'Champ'}, 'Standard': {'role': 'Follower', 'lvl': 'Champ'}, 'Smooth': {'role': 'Leader', 'lvl': 'Champ'}, 'Latin': {'role': 'Leader', 'lvl': 'Pre-Champ'}}
+height_in: 72.7
+wants: []
+excludes: [14]
+
+id: 10
+name: Dancer_10
+styles: {'Rhythm': {'role': 'Follower', 'lvl': 'Novice'}, 'Standard': {'role': 'Switch', 'lvl': 'Newcomer'}, 'Latin': {'role': 'Switch', 'lvl': 'Champ'}}
+height_in: 70.2
+wants: [9, 5]
+excludes: [6]
+
+id: 11
+name: Dancer_11
+styles: {'Standard': {'role': 'Switch', 'lvl': 'Newcomer'}}
+height_in: 60.6
+wants: [6, 5]
+excludes: []
+
+id: 12
+name: Dancer_12
+styles: {'Rhythm': {'role': 'Leader', 'lvl': 'Silver'}}
+height_in: 72.3
+wants: []
+excludes: []
+
+id: 13
+name: Dancer_13
+styles: {'Smooth': {'role': 'Switch', 'lvl': 'Silver'}}
+height_in: 69.6
+wants: []
+excludes: [16]
+
+id: 14
+name: Dancer_14
+styles: {'Smooth': {'role': 'Leader', 'lvl': 'Gold'}, 'Rhythm': {'role': 'Leader', 'lvl': 'Bronze'}, 'Latin': {'role': 'Follower', 'lvl': 'Gold'}, 'Standard': {'role': 'Follower', 'lvl': 'Pre-Champ'}}
+height_in: 72.6
+wants: [4]
+excludes: [11]
+
+id: 15
+name: Dancer_15
+styles: {'Latin': {'role': 'Leader', 'lvl': 'Bronze'}, 'Rhythm': {'role': 'Follower', 'lvl': 'Champ'}, 'Standard': {'role': 'Follower', 'lvl': 'Pre-Champ'}}
+height_in: 68.7
+wants: [3, 7]
+excludes: [1]
+
+id: 16
+name: Dancer_16
+styles: {'Smooth': {'role': 'Switch', 'lvl': 'Bronze'}, 'Latin': {'role': 'Switch', 'lvl': 'Novice'}}
+height_in: 69.0
+wants: [6, 2]
+excludes: []
+

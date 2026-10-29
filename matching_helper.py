@@ -1,28 +1,52 @@
 from dancer import Dancer
 
 ACCEPTABLE_ROLE_MATCHES = [{"Leader", "Follower"}, {"Leader", "Switch"}, {"Follower", "Switch"}, {"Switch", "Switch"}]
-ATTR_BASE_SCORES = {"level": 100, "want": 100, "mutual_want": 100, "height": 100, "shared_styles": 100}
-# attr_weights = {"level": 1, "height": 0.5, "location": 0.3}
+ATTR_BASE_SCORES = {"lvl": 100, "want": 100, "mutual_want": 100, "height": 100, "shared_styles": 100}
+# attr_weights = {"lvl": 1, "height": 0.5, "location": 0.3}
 
-def create_possible_pairs(dancers):
+def pair_dancers_to_many(dancers):
     possible_pairs = []
     shared_style_count = {}
 
     for i in range(len(dancers) - 1):
         dancer_i = dancers[i]
+        other_dancers = dancers[i + 1:]
+        possible_pairs_i, shared_style_count_i = pair_dancers_to_one(dancer_i, other_dancers)
+        possible_pairs = possible_pairs + (possible_pairs_i)
+        shared_style_count |= (shared_style_count_i)
+            
+            # for j in range(i + 1, len(dancers)):
+            #     dancer_j = dancers[j]
+            #     for style_j in dancer_j["styles"]:
+            #         # Check that styles match
+            #         if style_i == style_j:
+            #             # Check if roles are compatible
+            #             if {dancer_i["styles"][style_i]["role"], dancer_j["styles"][style_j]["role"]} in ACCEPTABLE_ROLE_MATCHES:
+            #                 possible_pairs.append({"dancers": [dancer_i["id"], dancer_j["id"]], "style": style_i, "score": 0})
+            #                 if (dancer_i["id"], dancer_j["id"]) not in shared_style_count:
+            #                     shared_style_count[(dancer_i["id"], dancer_j["id"])] = 1
+            #                 else:
+            #                     shared_style_count[(dancer_i["id"], dancer_j["id"])] += 1
+    return possible_pairs, shared_style_count
+
+def pair_dancers_to_one(target, dancers):
+    possible_pairs = []
+    shared_style_count = {}
+    dancer_j = target
+    
+    for i in range(len(dancers) - 1):
+        dancer_i = dancers[i]
         for style_i in dancer_i["styles"]:
-            for j in range(i + 1, len(dancers)):
-                dancer_j = dancers[j]
-                for style_j in dancer_j["styles"]:
-                    # Check that styles match
-                    if style_i == style_j:
-                        # Check if roles are compatible
-                        if {dancer_i["styles"][style_i]["role"], dancer_j["styles"][style_j]["role"]} in ACCEPTABLE_ROLE_MATCHES:
-                            possible_pairs.append({"dancers": [dancer_i["id"], dancer_j["id"]], "style": style_i, "score": 0})
-                            if (dancer_i["id"], dancer_j["id"]) not in shared_style_count:
-                                shared_style_count[(dancer_i["id"], dancer_j["id"])] = 1
-                            else:
-                                shared_style_count[(dancer_i["id"], dancer_j["id"])] += 1
+            for style_j in target["styles"]:
+                # Check that styles match
+                if style_i == style_j:
+                # Check if roles are compatible
+                    if {dancer_i["styles"][style_i]["role"], dancer_j["styles"][style_j]["role"]} in ACCEPTABLE_ROLE_MATCHES:
+                        possible_pairs.append({"dancers": [dancer_i["id"], dancer_j["id"]], "style": style_i, "score": 0})
+                        if (dancer_i["id"], dancer_j["id"]) not in shared_style_count:
+                            shared_style_count[(dancer_i["id"], dancer_j["id"])] = 1
+                        else:
+                            shared_style_count[(dancer_i["id"], dancer_j["id"])] += 1
     return possible_pairs, shared_style_count
 
 def score_pair(pair, dancers, shared_style_count):
@@ -38,12 +62,12 @@ def score_pair(pair, dancers, shared_style_count):
         return score
 
     # level match
-    level_difference = Dancer.LEVEL_VALUES[dancer_i["styles"][pair["style"]]["level"]] - Dancer.LEVEL_VALUES[dancer_j["styles"][pair["style"]]["level"]]
+    lvl_difference = Dancer.LVL_VALS[dancer_i["styles"][pair["style"]]["lvl"]] - Dancer.LVL_VALS[dancer_j["styles"][pair["style"]]["lvl"]]
     
-    if level_difference > 1:
+    if lvl_difference > 1:
         return score
     
-    score += (Dancer.MAX_LEVEL_DIFFERENCE - abs(level_difference)) * ATTR_BASE_SCORES["level"]
+    score += (Dancer.MAX_LVL_DIFF - abs(lvl_difference)) * ATTR_BASE_SCORES["lvl"]
     # TODO: make level_difference bonus change exponentially
 
     # wants partner bonus
@@ -62,5 +86,5 @@ def score_pair(pair, dancers, shared_style_count):
     score += shared_styles * ATTR_BASE_SCORES["shared_styles"]
 
     # normalize
-    norm_score = score / (Dancer.MAX_LEVEL_DIFFERENCE * ATTR_BASE_SCORES["level"] + ATTR_BASE_SCORES["want"] + ATTR_BASE_SCORES["mutual_want"] + len(Dancer.STYLES) * ATTR_BASE_SCORES["shared_styles"])
+    norm_score = score / (Dancer.MAX_LVL_DIFF * ATTR_BASE_SCORES["lvl"] + ATTR_BASE_SCORES["want"] + ATTR_BASE_SCORES["mutual_want"] + len(Dancer.STYLES) * ATTR_BASE_SCORES["shared_styles"])
     return norm_score
