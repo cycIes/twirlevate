@@ -7,7 +7,7 @@ from matching_helper import pair_dancers_to_one, score_pair
 
 # Generate random dancers to match
 
-dancers = generate_dancers(20, seed=50)
+dancers = generate_dancers(50, seed=50)
 # for dancer in dancers:
 # 	print(dancer)
 
